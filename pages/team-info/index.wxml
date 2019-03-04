@@ -1,0 +1,16 @@
+<i-news-card 
+    top="{{true}}"
+    title="{{teamName}}"
+    thumb="{{teamCover}}"        
+></i-news-card>
+<i-card 
+    title="RANK INFO."
+    extra="{{ranking}}"
+></i-card>
+<i-card 
+    title="TEAM INTRO."
+>
+    <view slot="content">
+        <text>{{teamIntro}}</text>
+    </view>
+</i-card>

@@ -4,12 +4,16 @@
     overflow: hidden;
     position: relative;
     background: #fff;
-    /* border: 1rpx solid #dddee1; */
+    border-top: 1rpx solid #dddee1;
     /* border-radius: 5px */
 }
 
+.i-card-top {
+    border: none;
+}
+
 .i-card-full {
-    margin: 6px 0;
+    padding: 4px 0;
     border-left: none;
     border-right: none;
     border-radius: 0
@@ -22,7 +26,8 @@
 }
 
 .i-card-header-content {
-    background-color: #000000;
+    /* background-color: #000000; */
+    margin: 0 10px 0 0;
 }
 
 .i-card-header-thumb {
@@ -40,7 +45,7 @@
 .i-card-header-title {
     flex: 1;
     display: flex;
-    margin: 0 0 0 10px;
+    min-height: 64px;
 }
 
 .i-card-title-footer {
@@ -53,6 +58,6 @@
 }
 
 .i-card-title-container text {
-    color: white;
-    background-color: #4D4D4D;
+    /* color: white; */
+    /* background-color: #4D4D4D; */
 }

@@ -1,4 +1,4 @@
-<i-tabs current="{{ currentTab }}" bindchange="changeTab">
+<i-tabs current="{{ currentTab }}" bindchange="changeTab" color="#D61D22">
     <i-tab key="tab1" title="League 1"></i-tab>
     <i-tab key="tab2" title="League 2"></i-tab>
     <i-tab key="tab3" title="League 3"></i-tab>
@@ -8,12 +8,10 @@
         <text class="rank-header-title">Ranking</text>
     </view>
     <view class="rank-list">
-        <i-card 
-            wx:for="{{rank}}"
-            wx:key="{{index}}"
-            thumb="{{item.cover}}"
-            title="{{item.team}}"
-            extra="{{item.score}}"
-        ></i-card>
+        <block wx:for="{{rank}}" wx:key="{{index}}">
+            <navigator url="/pages/team-info/index?team={{item.team}}">
+                <i-card thumb="{{item.cover}}" title="{{item.team}}" extra="{{item.score}}"></i-card>
+            </navigator>
+        </block>
     </view>
 </view>

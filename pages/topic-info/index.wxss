@@ -1,0 +1,23 @@
+.topic-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.topic-title {
+    border-bottom: 1rpx solid #c9c9c9;
+    font-size: 16px;
+    padding: 8px 6px;
+    word-wrap: break-word;
+}
+
+
+.topic-chatroom {
+    display: flex;
+    height: 100%;
+    flex: 1;
+}
+
+.topic-input-area {
+    border-top: 1rpx solid #c9c9c9;
+}

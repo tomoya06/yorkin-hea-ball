@@ -1,0 +1,14 @@
+/* pages/community/index.wxss */
+.topic-title {
+    padding: 6px 6px;
+    background: white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.topic-title-content {
+    background: #C9C9C9;
+    margin: 0 12px;
+    border-radius: 20px;
+}

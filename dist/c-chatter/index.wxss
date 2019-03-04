@@ -1,0 +1,68 @@
+.chatter-container {
+    display: flex;
+    margin: 8px 6px;
+}
+
+.chatter-container.chatter-container-right {
+    justify-content: flex-end;
+}
+
+.chatter-avatar-col {
+    margin: 0 16px 0 0;
+}
+
+.chatter-avatar-col.chatter-avatar-right {
+    margin: 0 0 0 16px;
+    order: 2;
+}
+
+.chatter-avatar-image {
+    width: 24px;
+    height: 24px;
+    border: 1rpx solid #c9c9c9;
+    box-sizing: border-box;
+}
+
+.chatter-msg-col {
+    flex: 1;
+    display: flex;
+}
+
+.chatter-msg-container {
+    /* total height: 16+4+4 = 24 */
+    background: #C9C9C9;
+    color: #000;
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+    max-width: 60%;
+    border-radius: 10px;
+    padding: 4px 12px;
+    word-wrap: break-word;
+}
+
+.chatter-msg-container::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 8px;
+    color: #C9C9C9;
+}
+
+.chatter-msg-left.chatter-msg-container::after {
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 8px 4px 0;
+    border-color: transparent #c9c9c9 transparent transparent;
+}
+
+.chatter-msg-right.chatter-msg-container::after {
+    right: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 8px;
+    border-color: transparent transparent transparent #c9c9c9;
+}

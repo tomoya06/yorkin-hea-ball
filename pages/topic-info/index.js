@@ -1,0 +1,87 @@
+// pages/topic-info/index.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    topicTitle: 'goooooooodgoooooooodgoooooooodgoooooooodgoooooooodgoooooooodgoooooooodgoooooooodgooooooood',
+    chatters: [{
+      username: 'me',
+      avatar: '',
+      msg: 'gooooood'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }, {
+      username: 'tomoya',
+      avatar: '',
+      msg: 'byyyyyyyyyyyyyye'
+    }]
+  },
+})

@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "i-sticky": "../../dist/sticky/index",
+        "i-sticky-item": "../../dist/sticky-item/index",
+        "i-card": "../../dist/c-news-card/index"
+    },
+    "navigationBarTitleText": "Community"
+}
