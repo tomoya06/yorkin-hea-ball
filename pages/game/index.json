@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "i-cell-group": "../../dist/cell-group/index",
+        "i-card": "../../dist/c-game-card/index"
+    },
+    "navigationBarTitleText": "Games"
+}

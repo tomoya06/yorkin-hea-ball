@@ -1,0 +1,9 @@
+{
+    "usingComponents": {
+        "i-cell-group": "../../dist/cell-group/index",
+        "i-card": "../../dist/c-rank-card/index",
+        "i-tabs": "../../dist/tabs/index",
+        "i-tab": "../../dist/tab/index"
+    },
+    "navigationBarTitleText": "Ranking"
+}

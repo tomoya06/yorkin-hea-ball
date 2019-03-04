@@ -1,0 +1,13 @@
+<view class="i-class i-card  i-card-full">
+    <view class="i-class i-card-header">
+        <view class="i-card-header-content">
+            <image class="i-card-header-thumb" src="{{ thumb }}" mode="aspectFit" />
+        </view>
+        <view class="i-card-header-title">
+            <view class="i-card-title-container">
+                <text >{{ title }}</text>
+            </view>
+            <image class="i-card-title-footer" src="https://www.easyicon.net/api/resizeApi.php?id=1162343&size=16"/>
+        </view>
+    </view>
+</view>

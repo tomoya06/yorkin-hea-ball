@@ -1,0 +1,13 @@
+<i-tabs current="{{ currentTab }}" bindchange="changeTab">
+    <i-tab key="tab1" title="League 1"></i-tab>
+    <i-tab key="tab2" title="League 2"></i-tab>
+    <i-tab key="tab3" title="League 3"></i-tab>
+</i-tabs>
+<i-cell-group>
+    <i-card 
+        wx:for="{{news}}"
+        wx:key="{{index}}"
+        title="{{item.title}}"
+        thumb="{{item.cover}}"
+    ></i-card>
+</i-cell-group>

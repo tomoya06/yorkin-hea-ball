@@ -1,0 +1,13 @@
+<view class="game" wx:for="{{games}}" wx:key="{{index}}">
+    <view class="game-header">
+        <text class="game-header-title">{{item.date}}</text>
+    </view>
+    <i-card 
+        wx:for="{{item.matches}}" 
+        wx:for-item="matchitem"
+        wx:for-index="matchidx" 
+        wx:key="{{matchidx}}"
+        status="{{matchitem.status}}"
+        teams="{{matchitem.teams}}"
+    ></i-card>
+</view>

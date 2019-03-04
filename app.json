@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/game/index",
+    "pages/rank/index",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "backgroundColor": "#000000",
+    "selectedColor": "#0063B1",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "News",
+        "iconPath": "/src/icons/news.png"
+      },
+      {
+        "pagePath": "pages/rank/index",
+        "text": "Rank",
+        "iconPath": "/src/icons/rankings.png"
+      },
+      {
+        "pagePath": "pages/game/index",
+        "text": "Game",
+        "iconPath": "/src/icons/baseball.png"
+      }
+    ]
+  }
+}

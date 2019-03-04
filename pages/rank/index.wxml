@@ -1,0 +1,19 @@
+<i-tabs current="{{ currentTab }}" bindchange="changeTab">
+    <i-tab key="tab1" title="League 1"></i-tab>
+    <i-tab key="tab2" title="League 2"></i-tab>
+    <i-tab key="tab3" title="League 3"></i-tab>
+</i-tabs>
+<view class="rank-container">
+    <view class="rank-header">
+        <text class="rank-header-title">Ranking</text>
+    </view>
+    <view class="rank-list">
+        <i-card 
+            wx:for="{{rank}}"
+            wx:key="{{index}}"
+            thumb="{{item.cover}}"
+            title="{{item.team}}"
+            extra="{{item.score}}"
+        ></i-card>
+    </view>
+</view>
