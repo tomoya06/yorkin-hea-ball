@@ -5,8 +5,8 @@
     "pages/game/index",
     "pages/community/index",
     "pages/topic-info/index",
-    "pages/team-info/index",
-    "pages/game-info/index"
+    "pages/live-info/index",
+    "pages/team-info/index"
   ],
   "window": {
     "backgroundTextStyle": "dark"

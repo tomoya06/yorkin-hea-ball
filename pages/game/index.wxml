@@ -2,12 +2,17 @@
     <view class="game-header">
         <text class="game-header-title">{{item.date}}</text>
     </view>
-    <i-card 
+    <block 
         wx:for="{{item.matches}}" 
         wx:for-item="matchitem"
         wx:for-index="matchidx" 
         wx:key="{{matchidx}}"
-        status="{{matchitem.status}}"
-        teams="{{matchitem.teams}}"
-    ></i-card>
+    >
+        <navigator url="/pages/live-info/index?gameID={{item.id}}">
+            <i-card 
+                status="{{matchitem.status}}"
+                teams="{{matchitem.teams}}"
+            ></i-card>
+        </navigator>
+    </block>
 </view>

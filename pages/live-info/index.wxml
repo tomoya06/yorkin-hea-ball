@@ -1,0 +1,18 @@
+<view class="live-header">
+    <text >{{teams[0] + ' VS. ' + teams[1]}}</text>
+</view>
+<view class="live-board">
+    <view class="live-board-header live-column">
+        <view class="live-row live-row-header">{{teams[0]}}</view>
+        <view class="live-row live-row-header">{{teams[1]}}</view>
+    </view>
+    <view class="live-board-score live-column" wx:for="{{scores}}" wx:key="{{index}}">
+        <view class="live-row">{{item[0]}}</view>
+        <view class="live-row">{{item[1]}}</view>
+    </view>
+</view>
+<view class="live-content">
+    <view class="live-item" wx:for="{{lives}}" wx:key="{{index}}">
+        <i-live-card msg="{{item}}"></i-live-card>
+    </view>
+</view>

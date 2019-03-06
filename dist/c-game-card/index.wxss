@@ -13,15 +13,15 @@
 }
 
 .i-card-header-status {
-    display: block;
+    display: flex;
     width: 46px;
     height: 46px;
-    line-height: 46px;
     border-radius: 50%;
     background: #000000;
     color: #fff;
-    text-align: center;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 
 .i-card-header-teams {
