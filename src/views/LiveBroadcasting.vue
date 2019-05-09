@@ -4,11 +4,15 @@
       <v-flex sm12>
         <h5 class="headline mb-4">Live Broadcasting</h5>
         <v-form ref="form">
-          <v-select
-            label="Live Channel"
-            v-model="selectedChannel"
-            :items="channels"
-          ></v-select>
+          <v-layout row wrap>
+            <v-flex sm12>
+              <v-select
+                label="Live Channel"
+                v-model="selectedChannel"
+                :items="channels"
+              ></v-select>
+            </v-flex>
+          </v-layout>
           <v-layout row wrap>
             <v-flex>
               <v-text-field
@@ -22,16 +26,19 @@
                 @click="submitCasting"
               >Submit</v-btn>
             </v-flex>
-          </v-layout> 
-          <v-card>
-            <v-list>
-              <v-list-tile v-for="(cast, index) in sortedCastingList" :key="index">
-                <v-list-tile-content>{{cast.time}} - {{cast.author}} : </v-list-tile-content>
-                <v-list-tile-content>{{cast.msg}}</v-list-tile-content>
-              </v-list-tile>
-            </v-list>
-          </v-card>
+          </v-layout>
         </v-form>
+      </v-flex>
+      
+      <v-flex sm12>
+        <v-card>
+          <v-list>
+            <v-list-tile v-for="(cast, index) in sortedCastingList" :key="index">
+              <v-list-tile-content>{{cast.time}} - {{cast.author}} : </v-list-tile-content>
+              <v-list-tile-content>{{cast.msg}}</v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>

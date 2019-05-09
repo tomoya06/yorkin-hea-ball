@@ -53,8 +53,8 @@ export default {
           title: "Home",
           active: true,
           items: [
-            { title: "Overview", route: '/' },
-            { title: "Config", route: '/about' }
+            { title: "Overview", route: '/about' },
+            { title: "Setting", route: '/setting' }
           ]
         },
         {
@@ -83,6 +83,6 @@ export default {
         }
       ]
     };
-  }
+  },
 };
 </script>
