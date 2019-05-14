@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/rank/index",
+    "pages/game/index",
+    "pages/community/index",
+    "pages/topic-info/index",
+    "pages/live-info/index",
+    "pages/news-details/index",
+    "pages/team-info/index",
+    "pages/register/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "backgroundColor": "#000000",
+    "selectedColor": "#D61D22",
+    "color": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "News",
+        "selectedIconPath": "src/icons/news-hl.png",
+        "iconPath": "src/icons/news.png"
+      },
+      {
+        "pagePath": "pages/rank/index",
+        "text": "Rank",
+        "iconPath": "src/icons/ranking.png",
+        "selectedIconPath": "src/icons/ranking-hl.png"
+      },
+      {
+        "pagePath": "pages/game/index",
+        "text": "Game",
+        "selectedIconPath": "src/icons/baseball-cap-hl.png",
+        "iconPath": "src/icons/baseball-cap.png"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "text": "Community",
+        "selectedIconPath": "src/icons/community-hl.png",
+        "iconPath": "src/icons/community.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

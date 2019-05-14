@@ -1,0 +1,110 @@
+.bg, .bg image {
+  width: 750rpx;
+  height: 400rpx;
+  filter: blur(5rpx);
+}
+
+.title {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.title .titleA {
+  font-size: 50rpx;
+  font-weight: bold;
+}
+
+.title .timer {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+.main {
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+}
+
+.bigPic {
+  width: 750rpx;
+  height: 400rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.bigPic image {
+  width: 710rpx;
+  height: 400rpx;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.like image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 10rpx;
+}
+
+.topic-input-area {
+  border-top: 1rpx solid #c9c9c9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.topic-input-area input {
+  flex: 1;
+  height: 80rpx;
+}
+
+.topic-input-area  .send {
+  width: 150rpx;
+  height: 60rpx;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 100rpx;
+}
+
+.comments {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.comments .comment-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.comments .username {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100%;
+  background: #f2f2f2;
+  border: 1rpx solid #c9c9c9;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.comments .usertext {
+  min-height: 60rpx;
+  background: #f2f2f2;
+  border: 1rpx solid #c9c9c9;
+  border-radius: 10rpx;
+  flex: 1;
+  padding: 10rpx;
+  box-sizing: border-box;
+}

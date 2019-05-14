@@ -1,0 +1,33 @@
+.i-card {
+    margin: 10px 16px;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    color: #fff;
+    /* border-top: 1rpx solid #dddee1; */
+    border-radius: 10px
+}
+
+.i-card-header {
+    display: flex;
+    padding: 6px 16px;
+    align-items: align-start;
+    font-size: 18px;
+}
+
+.i-card-content {
+    padding: 0 16px 10px;
+    word-break: break-all;
+    max-width: 100%;
+}
+
+.i-card-header-title {
+    flex: 1;
+    display: flex;
+    /* min-height: 64px; */
+}
+
+.i-card-title-container {
+    flex: 1;
+}

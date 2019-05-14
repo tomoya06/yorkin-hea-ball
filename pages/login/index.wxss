@@ -1,0 +1,79 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.account input {
+  height: 60rpx;
+  background: #c7c7c7;
+  border-radius: 1000rpx;
+  padding: 5rpx 20rpx;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .login {
+  width: 200rpx;
+  height: 60rpx;
+  color: #fff;
+  font-weight: bolder;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.login .register {
+  width: 200rpx;
+  height: 60rpx;
+  color: #c7c7c7;
+  font-weight: bolder;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.with {
+  display: flex;
+  align-items: center;
+  margin: 50rpx 0;
+}
+
+.with .word {
+  margin: 0 30rpx;
+}
+
+.with .line {
+  border: 1rpx solid #c7c7c7;
+  flex: 1;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.links image {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+}

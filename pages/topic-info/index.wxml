@@ -1,0 +1,12 @@
+<view class="topic-content">
+  <view class="topic-title">
+    <view class="topic-title-content">{{topicTitle}}</view>
+  </view>
+  <scroll-view class="topic-chatroom" scroll-y="{{true}}">
+    <i-chatter wx:for="{{chatters}}" wx:key="{{index}}" right="{{item.username == 'me'}}" avatar="{{item.avatar}}" msg="{{item.msg}}"></i-chatter>
+  </scroll-view>
+  <view class="topic-input-area">
+    <input type='text' placeholder='Say it...' bindinput='bindinput'></input>
+    <view class='send' bindtap='doSend'>Send</view>
+  </view>
+</view>

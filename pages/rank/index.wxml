@@ -1,0 +1,17 @@
+<i-tabs current="{{ currentTab }}" bindchange="changeTab" color="#D61D22">
+    <i-tab key="0" title="CPBL"></i-tab>
+    <i-tab key="1" title="NPB"></i-tab>
+    <i-tab key="2" title="MLB"></i-tab>
+</i-tabs>
+<view class="rank-container">
+    <view class="rank-header">
+        <text class="rank-header-title">Ranking</text>
+    </view>
+    <view class="rank-list">
+        <block wx:for="{{rank[currentTab].content}}" wx:key="{{index}}">
+            <navigator url="/pages/team-info/index?id={{rank[currentTab].id}}&index={{index}}">
+                <i-card thumb="{{item.src}}" title="{{item.name}}" extra="{{item.num}}"></i-card>
+            </navigator>
+        </block>
+    </view>
+</view>

@@ -1,0 +1,18 @@
+<view class="game" wx:for="{{games}}" wx:key="{{index}}">
+    <view class="game-header">
+        <text class="game-header-title">{{item.date}}</text>
+    </view>
+    <block 
+        wx:for="{{item.matches}}" 
+        wx:for-item="matchitem"
+        wx:for-index="matchidx" 
+        wx:key="{{matchidx}}"
+    >
+        <navigator url="/pages/live-info/index?me={{matchitem.teams[0].team}}&enemy={{matchitem.teams[1].team}}">
+            <i-card 
+                status="{{matchitem.status}}"
+                teams="{{matchitem.teams}}"
+            ></i-card>
+        </navigator>
+    </block>
+</view>

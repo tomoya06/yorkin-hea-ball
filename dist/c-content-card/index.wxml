@@ -1,0 +1,12 @@
+<view class="i-class i-card">
+    <view class="i-class i-card-header">
+        <view class="i-card-header-title">
+            <view class="i-card-title-container">
+                <text >{{ title }}</text>
+            </view>
+        </view>
+    </view>
+    <view class="i-class i-card-content">
+        <slot name="content"></slot>
+    </view>
+</view>

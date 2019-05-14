@@ -1,0 +1,3 @@
+<view class="live-container">
+    <view class="live-content">{{msg}}</view>
+</view>

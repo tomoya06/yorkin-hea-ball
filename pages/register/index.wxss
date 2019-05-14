@@ -1,0 +1,52 @@
+/* pages/Register/index.wxss */
+.header {
+  margin-top: 20%;
+  height: 0;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.account input {
+  height: 60rpx;
+  background: #c7c7c7;
+  border-radius: 1000rpx;
+  padding: 5rpx 20rpx;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .login {
+  width: 200rpx;
+  height: 60rpx;
+  color: #fff;
+  font-weight: bolder;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.login .register {
+  width: 200rpx;
+  height: 60rpx;
+  color: #c7c7c7;
+  font-weight: bolder;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}

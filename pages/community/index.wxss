@@ -1,0 +1,114 @@
+/* pages/community/index.wxss */
+
+.topic-title {
+  padding: 6px 6px;
+  background: white;
+  text-align: center;
+  font-size: 14px;
+  line-height: 26px;
+}
+
+.topic-title-content {
+  background: #c9c9c9;
+  margin: 0 12px;
+  border-radius: 20px;
+}
+
+.topic-title {
+  display: flex;
+  align-items: center;
+}
+
+.topic-title-content {
+  flex: 1;
+}
+
+.addGroup {
+  width: 50rpx;
+  height: 50rpx;
+  background: #c9c9c9;
+  border-radius: 1000rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.mask .area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mask .content {
+  background: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  position: relative;
+}
+
+.mask .hd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mask .main {
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.mask .groupName {
+  height: 60rpx;
+  background: #c9c9c9;
+  border-radius: 1000rpx;
+  width: 500rpx;
+  font-size: 28rpx;
+  margin: 40rpx 0;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.mask textarea {
+  width: 500rpx;
+  height: 350rpx;
+  background: #c9c9c9;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+
+.mask .close {
+  color: #fff;
+  font-size: 40rpx;
+  position: absolute;
+  top: -50rpx;
+  right: -50rpx;
+}
+
+.mask .button {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  height: 100rpx;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+}
+
+._content {
+  padding:0 32rpx 12rpx 32rpx;
+  box-sizing: border-box;
+}

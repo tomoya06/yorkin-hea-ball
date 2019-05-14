@@ -1,0 +1,13 @@
+<view class="i-class i-card">
+    <view class="i-class i-card-header">
+        <view class="i-card-header-status">{{status}}</view>
+        <view class="i-card-header-teams">
+            <text class="i-card-header-team">{{teams[0].team}}</text>
+            <view class="team-divider"></view>
+            <text class="i-card-header-team">{{teams[1].team}}</text>
+        </view>
+        <view class="i-card-header-extra">
+            <image mode="aspectFit" class="i-card-header-more" src="/src/image/resizeApi2.png"></image>
+        </view>
+    </view>
+</view>

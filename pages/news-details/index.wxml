@@ -1,0 +1,29 @@
+<view class='bg'>
+  <image src='{{details.src}}' />
+</view>
+<view class='title'>
+  <view class='titleA'>{{details.title}}</view>
+  <view class='timer'>2019-05-01 (发布时间)</view>
+</view>
+<view class='main'>
+  <text>{{details.text}}</text>
+</view>
+<view class='bigPic'>
+  <image src='{{details.src}}' bindtap='check' data-src='{{details.src}}' />
+</view>
+<view class='like' bindtap='doLike'>
+  <image src='/src/image/{{isLike?"belike":"like"}}.png' />
+  <view>{{isLike?"like":"liked"}}</view>
+</view>
+<view class='comments'>
+  <block wx:for='{{comment}}' wx:key='*item'>
+    <view class='comment-item'>
+      <view class='username'></view>
+      <view class='usertext'>{{item.usertext}}</view>
+    </view>
+  </block>
+</view>
+<view class="topic-input-area">
+  <input type='text' placeholder='Say it...' bindinput='bindinput'></input>
+  <view class='send' bindtap='doSend'>Send</view>
+</view>

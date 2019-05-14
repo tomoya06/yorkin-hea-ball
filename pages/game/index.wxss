@@ -1,0 +1,8 @@
+.game {
+    margin: 12px 0;
+}
+
+.game-header {
+    font-size: 14px;
+    margin: 0 16px;
+}

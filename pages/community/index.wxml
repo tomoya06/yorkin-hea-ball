@@ -1,0 +1,31 @@
+<i-sticky scrollTop="{{scrollTop}}">
+  <i-sticky-item wx:for="{{categories}}" wx:for-item="category" wx:key="{{index}}">
+    <view slot="title" class="topic-title">
+      <view class="topic-title-content">{{category.title}}</view>
+      <view class='addGroup' bindtap='addGroup' data-index='{{index}}'>+</view>
+    </view>
+    <view slot="content">
+      <block wx:for="{{category.topics}}" wx:for-item="topic" wx:key="{{index}}">
+        <navigator url="/pages/topic-info/index?title={{topic.title}}&content={{topic.content}}">
+          <i-card hasThumb="{{false}}" top="{{index==0}}" title="{{topic.title + ' ' + topic.date + '/' + topic.time}}"></i-card>
+          <view class='_content'>
+            <text>{{topic.content}}</text>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </i-sticky-item>
+</i-sticky>
+<view class='mask' wx:if='{{isMask}}'>
+  <view class='area'>
+    <view class='content'>
+      <view class='close' bindtap='closeMask'>X</view>
+      <view class='main'>
+        <view class='hd'>新增讨论组</view>
+        <input class='groupName' placeholder='讨论组名称' maxlength='10' bindinput='groupName' />
+        <textarea placeholder='讨论组描述(不超过50个字)' maxlength='50' bindinput='groupContent' />
+      </view>
+      <view class='button' bindtap='addNewGroup'>新建讨论组</view>
+    </view>
+  </view>
+</view>

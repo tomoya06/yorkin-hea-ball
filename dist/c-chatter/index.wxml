@@ -1,0 +1,8 @@
+<view class="chatter-container {{right? 'chatter-container-right': ''}}">
+    <view class="chatter-avatar-col {{right? 'chatter-avatar-right': ''}}">
+        <image class="chatter-avatar-image" src="{{avatar}}"/>
+    </view>
+    <view class="chatter-msg-container {{right? 'chatter-msg-right': 'chatter-msg-left'}}">
+        <text class="chatter-msg-text">{{msg}}</text>
+    </view>
+</view>

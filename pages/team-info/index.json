@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "i-news-card": "../../dist/c-news-card/index",
+        "i-card": "../../dist/c-content-card/index"
+    },
+    "navigationBarTitleText": "Info"
+}

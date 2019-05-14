@@ -1,0 +1,42 @@
+.topic-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.topic-title {
+  border-bottom: 1rpx solid #c9c9c9;
+  font-size: 16px;
+  padding: 8px 6px;
+  word-wrap: break-word;
+}
+
+.topic-chatroom {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+
+.topic-input-area {
+  border-top: 1rpx solid #c9c9c9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+.topic-input-area input{
+  flex: 1;
+  height: 80rpx;
+}
+
+.topic-input-area  .send {
+  width: 150rpx;
+  height: 60rpx;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 100rpx;
+}

@@ -1,0 +1,23 @@
+<view class='header'>
+  <image src='/src/image/login_bg.png'></image>
+</view>
+<view class='account'>
+  <input type='text' placeholder='Account' bindinput='getAccount' focus></input>
+</view>
+<view class='account'>
+  <input type='password' placeholder='Password' bindinput='getPassword'></input>
+</view>
+<view class='login'>
+  <view class="login" bindtap='doLogin'>LOGIN</view>
+  <navigator url="/pages/register/index">
+    <view class="register">SIGN UP</view>
+  </navigator>
+</view>
+<view class='with'>
+  <view class='line'></view>
+  <view class='word'>Login with</view>
+  <view class='line'></view>
+</view>
+<view class='links'>
+  <image src='/src/image/login_icon1.png'></image><image src='/src/image/login_icon2.png'></image><image src='/src/image/login_icon3.png'></image>
+</view>

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "i-live-card": "../../dist/c-live-card/index"
+    },
+    "navigationBarTitleText": "Live"
+}

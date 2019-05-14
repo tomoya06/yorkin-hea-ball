@@ -1,0 +1,14 @@
+.live-container {
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 16px;
+    background: #c9c9c9;
+    color: #000;
+    word-wrap: break-word;
+    margin: 6px 10px;
+}
+
+.live-content {
+    
+}
