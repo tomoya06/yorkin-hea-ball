@@ -22,7 +22,8 @@ Page({
     if (!this.data.sendValue) return;
     const param = {
       username: 'me',
-      usertext: this.data.sendValue
+      usertext: this.data.sendValue,
+      id: Date.now(),
     }
     let comment = this.data.comment;
     comment.push(param);
@@ -34,6 +35,25 @@ Page({
     this.setData({
       isLike: !this.data.isLike
     });
+  },
+  doDeleteComment(evt) {
+    let item = evt.target.dataset.cmt;
+    if (item.username === 'me') {
+      wx.showModal({
+        title: '提示',
+        content: '确认删除留言？',
+        success: (res) => {
+          if (res.confirm) {
+            let comment = this.data.comment.filter(cmt => cmt.id !== item.id);
+            this.setData({
+              comment
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
