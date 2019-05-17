@@ -21,16 +21,16 @@
                   </v-list-tile-avatar>
 
                   <v-list-tile-content>
-                    <v-list-tile-title v-html="user.title"></v-list-tile-title>
+                    <v-list-tile-title v-html="user.u_name"></v-list-tile-title>
                   </v-list-tile-content>
 
                   <v-list-tile-action>
-                    <v-btn icon @click.stop="starUser(user.id)">
+                    <v-btn icon @click.stop="starUser(user.u_id)">
                       <v-icon :color="user.star ? 'blue' : 'grey'">star</v-icon>
                     </v-btn>
                   </v-list-tile-action>
                   <v-list-tile-action>
-                    <v-btn icon @click.stop="deleteUser(user.id)">
+                    <v-btn icon @click.stop="deleteUser(user.u_id)">
                       <v-icon color="grey">clear</v-icon>
                     </v-btn>
                   </v-list-tile-action>
@@ -39,8 +39,8 @@
 
               <v-list-tile>
                 <v-list-tile-content>
-                  <v-list-tile-sub-title>User ID: {{ user.id }}</v-list-tile-sub-title>
-                  <v-list-tile-sub-title>Last Time Online: {{ user.online }}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>User ID: {{ user.u_id }}</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>Last Time Online: {{ user.u_time }}</v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
             </v-list-group>
@@ -84,6 +84,13 @@ export default {
       this.$toast(`${target.title} has been removed`);
     }
   },
+  created() {
+    this.axios.get(this.host+'/user/all').then((res) => {
+      console.log(res);
+      const { data } = res;
+      this.users = data.results;
+    })
+  }
 };
 </script>
 
