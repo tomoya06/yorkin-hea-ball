@@ -77,6 +77,7 @@
             </v-flex>
             <v-flex sm4>
               <v-img
+                v-if="uploadImageUrl"
                 :src="uploadImageUrl"
                 aspect-ratio="1"
                 class="grey lighten-2"
