@@ -151,7 +151,6 @@ export default {
         content: this.newsContent,
         pic: this.uploadImageUrl,
         time: (new Date()).toISOString(),
-        like: 0,
         leagueid: this.selectedLeague,
       })).finally(() => {
         this.fetchNews(this.selectedLeague);
