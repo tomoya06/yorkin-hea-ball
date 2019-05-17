@@ -140,8 +140,8 @@ export default {
       const fd = new FormData();
       fd.append('smfile', file);
       this.axios.post('https://sm.ms/api/upload', fd).then(({ data }) => {
-        console.log(data);
         this.uploadImageUrl = data.data.url;
+        console.log(this.uploadImageUrl);
       })
     },
 
