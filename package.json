@@ -12,11 +12,13 @@
     "axios": "^0.18.0",
     "core-js": "^2.6.5",
     "lodash": "^4.17.11",
+    "qs": "^6.7.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.3",
     "vuetify": "^1.5.5",
-    "vuetify-toast-snackbar": "^0.2.2"
+    "vuetify-toast-snackbar": "^0.2.2",
+    "vuetify-upload-button": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

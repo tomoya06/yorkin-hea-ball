@@ -5,25 +5,39 @@
         <h5 class="headline mb-4">Rank Update</h5>
         <v-form ref="form">
           <v-layout row wrap>
-            <v-flex sm12>
+            <v-flex sm6>
               <v-select
                 :items="leagues"
                 v-model="selectedLeague"
                 @change="onChangeSelectLeague"
                 label="League"
+                item-text="l_name"
+                item-value="l_id"
               ></v-select>
+            </v-flex>
+            <v-flex sm6>
+              <v-text-field
+                label="New League"
+                v-model="newleagueName"
+              ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row wrap>
-            <v-flex sm12>
+            <v-flex sm6>
               <v-select
-                :items="teamsInLeague"
+                :items="teams"
                 v-model="selectedTeam"
                 @change="onChangeSelectTeam"
-                item-text="name"
-                item-value="id"
+                item-text="r_t_name"
+                item-value="r_tid"
                 label="Team"
               ></v-select>
+            </v-flex>
+            <v-flex sm6>
+              <v-text-field
+                label="New Team"
+                v-model="newteamName"
+              ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row wrap>
@@ -37,6 +51,8 @@
           <v-layout row wrap>
             <v-flex sm12>
               <v-btn color="info" @click="updateWL">Update</v-btn>
+              <v-btn color="info" @click="createTeam">Create Team</v-btn>
+              <v-btn color="info" @click="createLeague">Create League</v-btn>
             </v-flex>
           </v-layout>
         </v-form>
@@ -45,9 +61,15 @@
       <v-flex sm12>
         <v-card>
           <v-list>
-            <v-list-tile v-for="(team, index) in teamsInLeague" :key="index">
-              <v-list-tile-content>{{team.name}} :</v-list-tile-content>
-              <v-list-tile-content>{{team.win}} / {{team.lose}}</v-list-tile-content>
+            <v-list-tile v-for="(team, index) in teams" :key="index">
+              <v-layout row wrap>
+                <v-flex sm4>
+                  <v-list-tile-content>{{team.r_t_name}}</v-list-tile-content>
+                </v-flex>
+                <v-flex sm8>
+                  <v-list-tile-content>{{team.r_t_wl_w}} WIN / {{team.r_t_wl_f}} LOSE</v-list-tile-content>
+                </v-flex>
+              </v-layout>
             </v-list-tile>
           </v-list>
         </v-card>
@@ -56,70 +78,71 @@
   </v-container>
 </template>
 <script>
-const teamList = [{
-  name: 'team 11',
-  id: '11',
-  league: '1',
-  win: 10,
-  lose: 0
-}, {
-  name: 'team 12',
-  id: '12',
-  league: '1',
-  win: 0,
-  lose: 0
-}, {
-  name: 'team 21',
-  id: '21',
-  league: '2',
-  win: 1,
-  lose: 10
-}, {
-  name: 'team 22',
-  id: '22',
-  league: '2',
-  win: 0,
-  lose: 0
-}, {
-  name: 'team 31',
-  id: '31',
-  league: '3',
-  win: 0,
-  lose: 0
-}]
-
 export default {
   data() {
     return {
       winInput: 0,
       loseInput: 0,
-      selectedLeague: '1',
-      leagues: [{
-        text: 'League 1',
-        value: '1',
-      }, {
-        text: 'League 2',
-        value: '2',
-      }, {
-        text: 'League 3',
-        value: '3',
-      }],
-      selectedTeam: '11',
-      teams: teamList
+      selectedLeague: 0,
+      leagues: [],
+      selectedTeam: 0,
+      teams: [],
+      newteamName: '',
+      newleagueName: '',
     }
+  },
+  created() {
+    this.fetchLeagues();
   },
   methods: {
     updateWL() {
-      const target = this.$_.find(this.teams, team => team.id === this.selectedTeam);
-      target.win = parseInt(this.winInput);
-      target.lose = parseInt(this.loseInput);
+      this.axios.post(this.host+'/rank/update', this.qs.stringify({
+        teamid: this.selectedTeam,
+        win: this.winInput,
+        lose: this.loseInput,
+      })).finally(() => {
+        this.fetchTeamInLeague(this.selectedLeague);
+      })
+    },
+    createTeam() {
+      this.axios.post(this.host+'/rank/add', this.qs.stringify({
+        leagueid: this.selectedLeague,
+        win: this.winInput,
+        lose: this.loseInput,
+        name: this.newteamName,
+        pic: '',
+        content: '',
+      })).finally(() => {
+        this.fetchTeamInLeague(this.selectedLeague);
+      })
+    },
+    createLeague() {
+      this.axios.post(this.host+'/league/add', this.qs.stringify({
+        name: this.newleagueName,
+        time: (new Date()).toISOString(),
+      })).finally(() => {
+        this.fetchLeagues();
+      })
     },
     onChangeSelectLeague() {
-      this.selectedTeam = this.teamsInLeague[0].id;
+      this.fetchTeamInLeague(this.selectedLeague);
     },
     onChangeSelectTeam() {
-      const target = this.$_.find(this.teams, team => team.id === this.selectedTeam);
     },
+    fetchTeamInLeague(l_id) {
+      this.axios.get(this.host+`/rank/all?leagueid=${l_id}`).then(({ data }) => {
+        this.teams = data.results;
+        this.selectedTeam = data.results[0].r_tid;
+      })
+    },
+    fetchLeagues() {
+      this.axios.get(this.host+'/league/all').then(({ data }) => {
+        this.leagues = data.results;
+        this.selectedLeague = data.results[0].l_id;
+
+        this.fetchTeamInLeague(data.results[0].l_id);
+      })
+    }
   },
   computed: {
     teamsInLeague() {

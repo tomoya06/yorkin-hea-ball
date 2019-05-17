@@ -25,11 +25,6 @@
                   </v-list-tile-content>
 
                   <v-list-tile-action>
-                    <v-btn icon @click.stop="starUser(user.u_id)">
-                      <v-icon :color="user.star ? 'blue' : 'grey'">star</v-icon>
-                    </v-btn>
-                  </v-list-tile-action>
-                  <v-list-tile-action>
                     <v-btn icon @click.stop="deleteUser(user.u_id)">
                       <v-icon color="grey">clear</v-icon>
                     </v-btn>
@@ -52,26 +47,20 @@
   </v-container>
 </template>
 <script>
-import toast from 'vuetify-toast';
-
-const fakeUsers = "0 "
-  .repeat(20)
-  .split("")
-  .map((item, index) => ({
-    avatar: "",
-    title: "tomoya"+`${index}`.padStart(3, '0'),
-    id: index,
-    online: Date.now(),
-    star: false,
-    active: false
-  }));
 export default {
   data: () => ({
-    users: fakeUsers,
+    users: [],
   }),
   methods: {
     handleClick() {
       alert("CLICKED");
+    },
+    fetchUser() {
+      this.axios.get(this.host+'/user/all').then((res) => {
+        console.log(res);
+        const { data } = res;
+        this.users = data.results;
+      })
     },
     starUser(userid) {
       const target = this.$_.find(this.users, (user) => user.id === userid);
@@ -79,17 +68,16 @@ export default {
       this.$toast(`${target.title} has been ${target.star ? '': 'un'}stared`);
     },
     deleteUser(userid) {
-      const target = this.$_.find(this.users, (user) => user.id === userid);
-      this.users = this.$_.filter(this.users, (user) => user.id !== userid);
-      this.$toast(`${target.title} has been removed`);
+      this.axios.post(this.host+`/user/remove`, this.qs.stringify({
+        userid,
+      })).finally(() => {
+        this.$toast(`User #${userid} has been removed`);
+        this.fetchUser();
+      })
     }
   },
   created() {
-    this.axios.get(this.host+'/user/all').then((res) => {
-      console.log(res);
-      const { data } = res;
-      this.users = data.results;
-    })
+    this.fetchUser();
   }
 };
 </script>
