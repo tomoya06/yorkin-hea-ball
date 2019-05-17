@@ -5,14 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    details:[],
+    details: {},
     sendValue: '',
     isLike: true,
     comment: []
   },
-  bindinput({
-    detail
-  }) {
+  bindinput({ detail }) {
     const sendValue = detail.value;
     this.setData({
       sendValue
@@ -55,25 +53,37 @@ Page({
       })
     }
   },
+
+  fetchNews(newsid) {
+    wx.request({
+      url: getApp().globalData.host+'/news/find',
+      data: {
+        newsid,
+      },
+      success: ({ data }) => {
+        const details = data.results[0];
+        details.n_time = details.n_time.substring(0, 10);
+        this.setData({
+          details,
+        })
+      }
+    })
+  },
+  check(e) {
+    const url = e.target.dataset.src;
+    wx.previewImage({
+      urls: [url],
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     const _id = options.id;
     const _index = options.index;
-    const news = _news.new;
-    for (let i in news){
-      if (news[i].id != _id) continue;
-      this.setData({
-        details:news[i].content[_index]
-      });
-    }
-  },
-  check(e) {
-    return;
-    wx.previewImage({
-      urls: ['https://ss0.baidu.com/73x1bjeh1BF3odCf/it/u=2465241100,795746670&fm=85&s=B0A9DF165B1240430EE66A530200D0FF'],
-    })
+
+    this.fetchNews(_id);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

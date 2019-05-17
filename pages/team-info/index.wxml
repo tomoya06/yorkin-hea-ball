@@ -1,16 +1,16 @@
 <i-news-card 
     top="{{true}}"
     title=""
-    thumb="{{info.src}}"        
+    thumb="{{info.r_t_pic}}"        
 ></i-news-card>
 <i-card 
-    title="{{info.name}}"
+    title="{{info.r_t_name}}"
     extra=""
 ></i-card>
 <i-card 
     title="TEAM INTRO."
 >
     <view slot="content">
-        <text>{{info.text}}</text>
+        <text>{{info.r_t_content}}</text>
     </view>
 </i-card>

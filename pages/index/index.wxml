@@ -1,17 +1,20 @@
 <i-tabs current="{{ currentTab }}" bindchange="changeTab" color="#D61D22">
-    <i-tab key="0" title="CPBL"></i-tab>
-    <i-tab key="1" title="NPB"></i-tab>
-    <i-tab key="2" title="MLB"></i-tab>
+    <i-tab
+        wx:for="{{leagues}}"
+        wx:key="{{index}}"
+        key="{{item.l_id}}"
+        title="{{item.l_name}}"
+    ></i-tab>
 </i-tabs>
 <i-cell-group>
     <i-card 
-        wx:for="{{news[currentTab].content}}"
+        wx:for="{{news}}"
         wx:key="{{index}}"
         top="{{index==0}}"
-        title="{{item.title}}"
-        thumb="{{item.src}}"
+        title="{{item.n_title}}"
+        thumb="{{item.n_pic}}"
         bindtap='navigate'
         data-index='{{index}}'
-        data-id='{{news[currentTab].id}}'
+        data-id='{{item.n_id}}'
     ></i-card>
 </i-cell-group>

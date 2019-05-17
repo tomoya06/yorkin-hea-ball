@@ -1,23 +1,26 @@
-import _ranks from '../../ranks/ranks.js'
 Page({
   data: {
-    info:[],
-    teamName: 'Lamigo',
-    teamCover: '/src/image/A02_logo_01.png',
-    ranking: 0,
-    teamIntro: 'sdddddddddddddddddddddddddddddssdddddddddddddddddddddddddddddssdddddddddddddddddddddddddddddssdddddddddddddddddddddddddddddssddddddddddddddddddddddddddddds'
+    info: {},
   },
   onLoad(options){
     const _id = options.id;
     const _index = options.index;
-    const ranks = _ranks.ranks;
-    for(let i in ranks){
-      if (ranks[i].id == _id){
+    
+    this.fetchTeam(_id);
+  },
+
+  fetchTeam(teamid) {
+    wx.request({
+      url: getApp().globalData.host+'/rank/find',
+      data: {
+        teamid,
+      },
+      success: ({ data }) => {
+        const info = data.results[0];
         this.setData({
-          info:ranks[i].content[_index]
-        });
-        break;
+          info,
+        })
       }
-    }
+    })
   }
 })

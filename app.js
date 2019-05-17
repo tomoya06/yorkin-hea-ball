@@ -4,6 +4,7 @@ App({
     
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'http://localhost:3000',
   }
 })

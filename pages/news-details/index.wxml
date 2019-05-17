@@ -1,15 +1,15 @@
 <view class='bg'>
-  <image src='{{details.src}}' />
+  <image src='{{details.n_pic}}' />
 </view>
 <view class='title'>
-  <view class='titleA'>{{details.title}}</view>
-  <view class='timer'>2019-05-01 (发布时间)</view>
+  <view class='titleA'>{{details.n_title}}</view>
+  <view class='timer'>{{details.n_time}}</view>
 </view>
 <view class='main'>
-  <text>{{details.text}}</text>
+  <text>{{details.n_content}}</text>
 </view>
 <view class='bigPic'>
-  <image src='{{details.src}}' bindtap='check' data-src='{{details.src}}' />
+  <image src='{{details.n_pic}}' bindtap='check' data-src='{{details.n_pic}}' />
 </view>
 <view class='like' bindtap='doLike'>
   <image src='/src/image/{{isLike?"belike":"like"}}.png' />
