@@ -7,31 +7,6 @@ Page({
   data: {
     accountValue: '',
     passwordValue: '',
-    accounts: [{
-        account: 'yorkinged',
-        password: 'lfy1435'
-      },
-      {
-        account: 'a',//test
-        password: '123'
-      },
-      {
-        account: 'tomoya06',
-        password: 'tomoya06'
-      },
-      {
-        account: 'lhr123',
-        password: 'lhr123123'
-      },
-      {
-        account: 'Tsamkongsd',
-        password: 'sumdung'
-      },
-      {
-        account: 'NamHwaa',
-        password: 'nwera2'
-      }
-    ]
   },
   doLogin() {
     const accountValue = this.data.accountValue;
@@ -53,38 +28,40 @@ Page({
       });
       return;
     }
-    for (let i in accounts) {
-      if (accounts[i].account != accountValue){
-        if (i == accounts.length - 1){
+    wx.request({
+      url: 'http://localhost:3000/user/login',
+      method: 'POST',
+      data: {
+        name: this.data.accountValue,
+        pwd: this.data.passwordValue,
+      },
+      success: function(res) {
+        console.log(res);
+        const { data } = res;
+        if (data.results.length == 0) {
           wx.showToast({
-            title: '输入账号错误',
+            title: '输入密码错误',
             icon: 'none',
             duration: 2000
           });
+          return ;
         }
-        continue;
-      }
-      if (accounts[i].password != passwordValue){
         wx.showToast({
-          title: '输入密码错误',
-          icon: 'none',
+          title: '登录成功',
+          icon: 'success',
+          mask:true,
           duration: 2000
         });
-        break;
+        setTimeout(()=>{
+          wx.reLaunch({
+            url: '/pages/index/index',
+          });
+        },500);
+      },
+      fail: function(error) {
+        console.log(error);
       }
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success',
-        mask:true,
-        duration: 2000
-      });
-      setTimeout(()=>{
-        wx.reLaunch({
-          url: '/pages/index/index',
-        });
-      },500);
-      break;
-    }
+    })
   },
   getAccount({
     detail

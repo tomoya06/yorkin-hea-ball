@@ -29,17 +29,34 @@ Page({
       });
       return;
     }
-    
-    wx.navigateBack({ 
-      delta: 1,
-      complete: () => {
-        wx.showToast({
-          title: '注册成功',
-          icon: 'none',
-          duration: 2000,
+
+    wx.request({
+      url: 'http://localhost:3000/user/add',
+      data: {
+        name: this.data.accountValue,
+        pwd: this.data.passwordValue,
+        time: (new Date()).toISOString(),
+        comment: 'hello world',
+      },
+      method: 'POST',
+      success: function(res) {
+        console.log(res);
+        wx.navigateBack({ 
+          delta: 1,
+          complete: () => {
+            wx.showToast({
+              title: '注册成功',
+              icon: 'none',
+              duration: 2000,
+            });
+          }
         });
+      },
+      fail: function(error) {
+        console.log(error);
       }
-    });
+    })
+    
   },
   
   getAccount({
