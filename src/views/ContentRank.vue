@@ -81,6 +81,8 @@
                 :src="uploadImageUrl"
                 aspect-ratio="1"
                 class="grey lighten-2"
+                max-height="160px"
+                :contain="true"
               >
                 <template v-slot:placeholder>
                   <v-layout
@@ -124,7 +126,9 @@
         </v-form>
       </v-flex>
 
-      <v-flex sm12>
+      <v-flex sm12
+        v-if="formState !== 'newleague'"
+      >
         <v-card>
           <v-list>
             <v-list-tile v-for="(team, index) in teams" :key="index">
