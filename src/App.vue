@@ -49,7 +49,7 @@ export default {
       drawer: false,
       items: [
         {
-          action: "local_activity",
+          action: "home",
           title: "Home",
           active: true,
           items: [
@@ -58,7 +58,7 @@ export default {
           ]
         },
         {
-          action: "restaurant",
+          action: "person",
           title: "User",
           items: [
             { title: "User List", route: '/userlist' },
@@ -66,7 +66,7 @@ export default {
           ]
         },
         {
-          action: "school",
+          action: "mic_none",
           title: "Live",
           items: [
             { title: "Game Update", route: '/livegameupdate' },
@@ -74,7 +74,7 @@ export default {
           ],
         },
         {
-          action: "school",
+          action: "library_books",
           title: "Content",
           items: [
             { title: "News Update", route: '/contentnews' },
