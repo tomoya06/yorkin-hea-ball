@@ -19,7 +19,7 @@ Page({
   },
   doSend() {
     if (!this.data.sendValue) return;
-    this.socket.send({
+    this.data.socket.send({
       data: JSON.stringify({
         by: this.data.username,
         msg: this.data.sendValue,
