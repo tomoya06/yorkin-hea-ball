@@ -9,7 +9,7 @@ Page({
     topicTitle: 'content',
     chatters: [],
     socket: null,
-    username: getApp().globalData.username,
+    username: '',
   },
   bindinput({ detail }) {
     const sendValue = detail.value;
@@ -32,7 +32,8 @@ Page({
       title: options.title
     });
     this.setData({
-      topicTitle: options.content
+      topicTitle: options.content,
+      username: getApp().globalData.username,
     });
 
     const socket = wx.connectSocket({
