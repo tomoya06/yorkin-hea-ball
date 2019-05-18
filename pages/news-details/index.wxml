@@ -12,14 +12,18 @@
   <image src='{{details.n_pic}}' bindtap='check' data-src='{{details.n_pic}}' />
 </view>
 <view class='like' bindtap='doLike'>
+  <view>{{details.n_like}}</view>
   <image src='/src/image/{{isLike?"belike":"like"}}.png' />
   <view>{{isLike?"like":"liked"}}</view>
 </view>
 <view class='comments'>
   <block wx:for='{{comment}}' wx:key='*item'>
     <view class='comment-item'>
-      <view class='username'>{{item.username}}</view>
-      <view class='usertext' bindlongpress='doDeleteComment' data-cmt='{{item}}'>{{item.usertext}}</view>
+      <view class='username'>{{item.c_u_name}}</view>
+      <!-- <view class='username'></view> -->
+      <view class='usertext' bindlongpress='doDeleteComment' data-id='{{item.c_id}}' data-uid='{{item.c_u_id}}'>
+        {{item.c_content}}
+      </view>
     </view>
   </block>
 </view>

@@ -18,34 +18,23 @@ Page({
   },
   doSend() {
     if (!this.data.sendValue) return;
-    const param = {
-      username: 'me',
-      usertext: this.data.sendValue,
-      id: Date.now(),
-    }
-    let comment = this.data.comment;
-    comment.push(param);
-    this.setData({
-      comment
-    });
+    this.sendComment(this.data.sendValue);
   },
+
   doLike() {
-    this.setData({
-      isLike: !this.data.isLike
-    });
+    this.sendLike();
   },
+
   doDeleteComment(evt) {
-    let item = evt.target.dataset.cmt;
-    if (item.username === 'me') {
+    let uid = evt.target.dataset.uid;
+    const userid = getApp().globalData.userid;
+    if (uid === userid) {
       wx.showModal({
         title: '提示',
         content: '确认删除留言？',
         success: (res) => {
           if (res.confirm) {
-            let comment = this.data.comment.filter(cmt => cmt.id !== item.id);
-            this.setData({
-              comment
-            });
+            this.deleteComment(evt);
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
@@ -69,6 +58,86 @@ Page({
       }
     })
   },
+
+  fetchComments(newsid) {
+    wx.request({
+      url: getApp().globalData.host + '/news/getcomment',
+      data: {
+        newsid,
+      },
+      success: ({ data }) => {
+        const comment = data.results;
+        this.setData({
+          comment,
+        })
+      }
+    })
+  },
+
+  sendComment(content) {
+    const userid = getApp().globalData.userid;
+    const newsid = this.data.details.n_id;
+    wx.request({
+      url: getApp().globalData.host + '/news/addcomment',
+      method: 'POST',
+      data: {
+        newsid,
+        userid,
+        content,
+      },
+      success: ({ data }) => {
+        this.fetchComments(newsid);
+      }
+    })    
+  },
+
+  deleteComment(e) {
+    const commentid = e.target.dataset.id;
+    const newsid = this.data.details.n_id;
+    wx.request({
+      url: getApp().globalData.host + '/news/deletecomment',
+      method: 'POST',
+      data: {
+        commentid,
+      },
+      success: ({ data }) => {
+        this.fetchComments(newsid);
+      }
+    })
+  },
+
+  checkLike(newsid) {
+    wx.request({
+      url: getApp().globalData.host + '/news/findlike',
+      data: {
+        newsid,
+        userid: getApp().globalData.userid,
+      },
+      success: ({ data }) => {
+        this.setData({
+          isLike: data.results.length === 0,
+        })
+      }
+    })
+  },
+
+  sendLike() {
+    const url = getApp().globalData.host + (this.data.isLike ? '/news/like' : '/news/dislike');
+    const newsid = this.data.details.n_id;
+    wx.request({
+      url,
+      method: 'POST',
+      data: {
+        newsid,
+        userid: getApp().globalData.userid,
+      },
+      success: ({ data }) => {
+        this.checkLike(newsid);
+        this.fetchNews(newsid);
+      }
+    })
+  },
+
   check(e) {
     const url = e.target.dataset.src;
     wx.previewImage({
@@ -84,6 +153,9 @@ Page({
     const _index = options.index;
 
     this.fetchNews(_id);
+    this.checkLike(_id);
+    this.fetchComments(_id);
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
