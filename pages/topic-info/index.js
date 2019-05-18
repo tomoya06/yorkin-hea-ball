@@ -7,89 +7,10 @@ Page({
   data: {
     sendValue: '',
     topicTitle: 'content',
-    chatters: [
-    //   {
-    //   username: 'me',
-    //   avatar: '',
-    //   msg: 'gooooood'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyyebyyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }, {
-    //   username: 'tomoya',
-    //   avatar: '',
-    //   msg: 'byyyyyyyyyyyyyye'
-    // }
-    ]
+    chatters: [],
+    socket: null,
   },
-  bindinput({
-    detail
-  }) {
+  bindinput({ detail }) {
     const sendValue = detail.value;
     this.setData({
       sendValue
@@ -97,16 +18,23 @@ Page({
   },
   doSend() {
     if (!this.data.sendValue) return;
-    const param = {
-      username: 'me',
-      avatar: '',
-      msg: this.data.sendValue
-    }
-    let chatters = this.data.chatters
-    chatters.push(param);
-    this.setData({
-      chatters
-    });
+    this.socket.send({
+      data: JSON.stringify({
+        by: 'me',
+        msg: this.data.sendValue,
+        type: 'chat',
+      })
+    })
+    // const param = {
+    //   username: 'me',
+    //   avatar: '',
+    //   msg: this.data.sendValue
+    // }
+    // let chatters = this.data.chatters
+    // chatters.push(param);
+    // this.setData({
+    //   chatters
+    // });
   },
   onLoad(options){
     wx.setNavigationBarTitle({
@@ -115,5 +43,33 @@ Page({
     this.setData({
       topicTitle: options.content
     });
+
+    const socket = wx.connectSocket({
+      url: `ws://localhost:9999`,
+      success: (socket) => {
+        console.log('CONNECTED TO WEBSOCKET');
+      },
+      fail: (error) => {
+        console.error(error)
+      }
+    })
+
+    socket.onMessage(({ data }) => {
+      data = JSON.parse(data);
+      const chatters = this.data.chatters;
+      const msg = data.type === 'live' ? `LIVE FROM ${data.by} 📢📢📢 ${data.msg}` : `${data.by} : ${data.msg}`;
+      chatters.push({
+        username: data.by,
+        msg,
+        avatar: '',
+      });
+      this.setData({ chatters });
+      // if (true) {
+      // }
+    })
+
+    this.setData({
+      socket,
+    })
   }
 })
