@@ -3,7 +3,7 @@
     <view class="topic-title-content">{{topicTitle}}</view>
   </view>
   <scroll-view class="topic-chatroom" scroll-y="{{true}}">
-    <i-chatter wx:for="{{chatters}}" wx:key="{{index}}" right="{{item.username == 'me'}}" avatar="{{item.avatar}}" msg="{{item.msg}}"></i-chatter>
+    <i-chatter wx:for="{{chatters}}" wx:key="{{index}}" right="{{item.username == username}}" avatar="{{item.avatar}}" msg="{{item.msg}}"></i-chatter>
   </scroll-view>
   <view class="topic-input-area">
     <input type='text' placeholder='Say it...' bindinput='bindinput'></input>

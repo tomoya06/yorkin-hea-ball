@@ -9,6 +9,7 @@ Page({
     topicTitle: 'content',
     chatters: [],
     socket: null,
+    username: getApp().globalData.username,
   },
   bindinput({ detail }) {
     const sendValue = detail.value;
@@ -20,21 +21,11 @@ Page({
     if (!this.data.sendValue) return;
     this.socket.send({
       data: JSON.stringify({
-        by: 'me',
+        by: this.data.username,
         msg: this.data.sendValue,
         type: 'chat',
       })
     })
-    // const param = {
-    //   username: 'me',
-    //   avatar: '',
-    //   msg: this.data.sendValue
-    // }
-    // let chatters = this.data.chatters
-    // chatters.push(param);
-    // this.setData({
-    //   chatters
-    // });
   },
   onLoad(options){
     wx.setNavigationBarTitle({
@@ -54,6 +45,16 @@ Page({
       }
     })
 
+    socket.onOpen(() => {
+      socket.send({
+        data: JSON.stringify({
+          by: this.data.username,
+          msg: 'has come to the chatroom',
+          type: 'chat',
+        })
+      })
+    })
+
     socket.onMessage(({ data }) => {
       data = JSON.parse(data);
       const chatters = this.data.chatters;
@@ -64,8 +65,6 @@ Page({
         avatar: '',
       });
       this.setData({ chatters });
-      // if (true) {
-      // }
     })
 
     this.setData({

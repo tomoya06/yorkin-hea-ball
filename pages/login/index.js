@@ -47,6 +47,7 @@ Page({
           return ;
         }
         getApp().globalData.userid = data.results[0].u_id;
+        getApp().globalData.username = data.results[0].u_name;
         wx.showToast({
           title: '登录成功',
           icon: 'success',
