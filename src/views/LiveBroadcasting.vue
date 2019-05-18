@@ -78,7 +78,7 @@ export default {
 
     sendCasting() {
       this.clientio.send(JSON.stringify({
-        by: 'HOST',
+        by: this.rooms[0].name,
         type: 'live',
         msg: this.newCasting,
       }))
