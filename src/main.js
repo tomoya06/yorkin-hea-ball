@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$_ = lodash;
 Vue.prototype.qs = qs;
 Vue.prototype.host = 'http://localhost:3000';
+Vue.prototype.wshost = 'ws://localhost:9999';
 
 Vue.use(VueAxios, axios);
 

@@ -7,9 +7,11 @@
           <v-layout row wrap>
             <v-flex sm12>
               <v-select
-                label="Live Channel"
-                v-model="selectedChannel"
-                :items="channels"
+                :items="rooms"
+                v-model="selectedRoom"
+                item-text="name"
+                item-value="id"
+                label="Live Room"
               ></v-select>
             </v-flex>
           </v-layout>
@@ -33,9 +35,15 @@
       <v-flex sm12>
         <v-card>
           <v-list>
-            <v-list-tile v-for="(cast, index) in sortedCastingList" :key="index">
-              <v-list-tile-content>{{cast.time}} - {{cast.author}} : </v-list-tile-content>
-              <v-list-tile-content>{{cast.msg}}</v-list-tile-content>
+            <v-list-tile v-for="(cast, index) in castingList" :key="index">
+              <v-layout row wrap>
+                <v-flex sm4>
+                    <v-list-tile-content>{{cast.time}} : </v-list-tile-content>
+                </v-flex>
+                <v-flex sm8>
+                  <v-list-tile-content>{{cast.msg}}</v-list-tile-content>
+                </v-flex>
+              </v-layout>
             </v-list-tile>
           </v-list>
         </v-card>
@@ -44,51 +52,64 @@
   </v-container>
 </template>
 <script>
+// import io from 'socket.io-client';
+// const WebSocket = require('ws');
+
 export default {
   data() {
     return {
-      castingList: [{
-        time: Date.now(),
-        msg: 'GOOOOOOOOOOAL',
-        author: 'me',
-        channel: '1'
-      }, {
-        time: Date.now(),
-        msg: 'It\'s Lights Out And Away We Go!',
-        author: 'me',
-        channel: '2'
+      rooms: [{
+        name: 'CENTER LIVE ROOM',
+        id: 1
       }],
+      selectedRoom: 1,
       newCasting: '',
-      channels: [{
-        text: 'Channel 1',
-        value: '1',
-      }, {
-        text: 'Channel 2',
-        value: '2',
-      }],
-      selectedChannel: '1',
+      castingList: [],
+      clientio: null,
     }
   },
   methods: {
     submitCasting() {
-      this.castingList.push({
-        time: Date.now(),
-        msg: this.newCasting,
-        author: 'me',
-        channel: this.selectedChannel,
-      });
-      this.resetForm();
+      this.sendCasting();
     },
     resetForm() {
-      this.$refs.form.reset();
+      this.newCasting = '';
+    },
+
+    sendCasting() {
+      this.clientio.send(JSON.stringify({
+        by: 'HOST',
+        type: 'live',
+        msg: this.newCasting,
+      }))
+      this.resetForm();
     }
   },
-  computed: {
-    sortedCastingList() {
-      return this.castingList
-        .filter(item => item.channel === this.selectedChannel)
-        .sort((a, b) => a.time < b.time);
+  created() {
+    // const clientio = io('http://localhost:3000/gamelive');
+    // clientio.on('connect', () => {
+    //   this.$toast(`CONENCTED TO WEBSOCKET`);
+    // })
+    // clientio.on('message', (data) => {
+      //   console.log(data);
+    // })
+    // this.clientio = clientio;
+
+    const ws = new WebSocket(this.wshost);
+    ws.onopen = () => {
+      this.$toast(`CONENCTED TO WEBSOCKET`);
     }
+
+    ws.onmessage = ({ data }) => {
+      data = JSON.parse(data);
+      this.castingList.unshift(data);
+    }
+
+    this.clientio = ws;
+  },
+
+  destroyed() {
+    this.clientio.close();
   }
 }
 </script>
