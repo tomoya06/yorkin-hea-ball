@@ -16,9 +16,9 @@
   </view>
   <view class="live-content">
     <view class='text-list'>
-      <block wx:for="{{barrage}}" wx:key="{{index}}">
-        <view class="live-item" style="animation:barrage .5s linear {{item.time}}s forwards;">
-          <i-live-card msg="{{item.text}}"></i-live-card>
+      <block wx:for="{{lives}}" wx:key="{{index}}">
+        <view class="live-item" style="animation:barrage .5s linear .1s forwards;">
+          <i-live-card msg="{{item}}"></i-live-card>
         </view>
       </block>
     </view>

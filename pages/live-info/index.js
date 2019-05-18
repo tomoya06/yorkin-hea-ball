@@ -1,3 +1,5 @@
+const io = require('../../utils/weapp.engine.io.js');
+
 Page({
   data: {
     animation:'',
@@ -13,26 +15,8 @@ Page({
       [1, 3],
       [0, 0]
     ],
-    lives: ['1111111111111111111111',
-      '55555555555555555555555',
-      "zzzzzzzzzzzzzzzz",
-      '1111111111111111111111',
-      "gggggggggggg",
-      '1111111111111111111111',
-      '55555555555555555555555',
-      "zzzzzzzzzzzzzzzz",
-      '1111111111111111111111',
-      "gggggggggggg",
-      "hhhhhhhhhhhhh",
-      "zzzzzzzzzzzzzzzz",
-      '1111111111111111111111',
-      "gggggggggggg",
-      "hhhhhhhhhhhhh",
-      "zzzzzzzzzzzzzzzz",
-      '1111111111111111111111',
-      '55555555555555555555555'
-    ],
-    barrage:[]
+    lives: [],
+    socket: null,
   },
   onLoad(options){
     let teams = this.data.teams;
@@ -41,23 +25,32 @@ Page({
     this.setData({
       teams
     });
-    this.barrage();
-  },
-  barrage(){
-    let lives = this.data.lives;
-    let barrage = this.data.barrage;
-    for (let i in lives){
-      barrage.push(new Doomm(lives[i],i*.5));
-    }
+
+    const socket = wx.connectSocket({
+      url: `ws://localhost:9999`,
+      success: (socket) => {
+        console.log('CONNECTED TO WEBSOCKET');
+      },
+      fail: (error) => {
+        console.error(error)
+      }
+    })
+
+    socket.onMessage(({ data }) => {
+      data = JSON.parse(data);
+      if (data.type === 'live' || data.type === '*') {
+        const lives = this.data.lives;
+        lives.unshift(`${data.by}: ${data.msg}`);
+        this.setData({ lives });
+      }
+    })
+
     this.setData({
-      barrage
-    });
+      socket,
+    })
+  },
+  
+  onUnload() {
+    this.data.socket.close();
   }
 });
-// 动画添加延迟时间
-class Doomm {
-  constructor(text, time) {
-    this.text = text;
-    this.time = time;
-  }
-}
